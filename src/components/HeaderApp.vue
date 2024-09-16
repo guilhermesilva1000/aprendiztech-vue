@@ -134,21 +134,6 @@ header .header-content {
   font-size: 1.2rem;
 }
 
-.alert-message {
-  background-color: rgba(103, 65, 217, 0.1);
-  color: #6741d9;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  /* text-transform: uppercase; */
-}
-
 header nav {
   display: flex;
   align-items: center;

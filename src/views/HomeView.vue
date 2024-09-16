@@ -83,7 +83,7 @@ onMounted(() => {
           <p class="company">{{ vaga.company }}</p>
           <span>{{ vaga.location }}</span>
           <p>{{ vaga.description }}</p>
-          <span>Há 2</span>
+          <span>Há 2 dias</span>
         </RouterLink>
       </div>
       <div v-if="loading" class="loading">Carregando mais vagas...</div>

@@ -64,6 +64,10 @@ export default {
         </a>
       </div>
     </div>
+    <div class="vaga-buttons">
+      <button class="btn btn-primary">Candidatar-se</button>
+      <button class="btn btn-primary-outline">Copiar Link</button>
+    </div>
   </div>
   <div v-else>
     <p>Carregando...</p>
@@ -164,6 +168,8 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .vaga-about-field {
@@ -182,5 +188,12 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.vaga-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 </style>
