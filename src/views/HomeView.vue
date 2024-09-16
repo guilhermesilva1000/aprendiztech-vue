@@ -19,12 +19,20 @@ const checkAuth = () => {
 const loadMoreVagas = async () => {
   if (!loading.value && hasMoreVagas.value) {
     loading.value = true;
-    await store.dispatch("getVagas", store.state.currentPage + 1);
-    loading.value = false;
 
-    // Verifica se todas as páginas foram carregadas
-    if (store.state.currentPage >= store.state.totalPages) {
+    // Verifique se a próxima página está dentro do intervalo
+    if (store.state.currentPage < store.state.totalPages) {
+      await store.dispatch("getVagas", store.state.currentPage + 1);
+      loading.value = false;
+
+      // Verifique se todas as páginas foram carregadas
+      if (store.state.currentPage >= store.state.totalPages) {
+        hasMoreVagas.value = false;
+      }
+    } else {
+      // Se não há mais páginas, atualize o estado para não tentar carregar mais
       hasMoreVagas.value = false;
+      loading.value = false;
     }
   }
 };
