@@ -111,10 +111,13 @@ header {
   width: 100%;
   display: flex;
   justify-content: center;
-  /* justify-content: space-between; */
-  /* align-items: center; */
-  padding: 1rem;
-  /* border-bottom: 2px solid rgba(0, 0, 0, 0.1); */
+  padding: 1rem 8rem;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
 }
 
 header .header-content {

@@ -34,9 +34,6 @@ export const store = createStore({
       state.totalPages = totalPages;
       state.currentPage = currentPage;
     },
-    setHasMoreVagas(state, hasMore) {
-      state.hasMoreVagas = hasMore;
-    },
   },
   actions: {
     checkAuth({ commit }) {
@@ -79,11 +76,6 @@ export const store = createStore({
           totalPages: response.data.total_pages,
           currentPage: page,
         });
-
-        // Atualize o estado hasMoreVagas com base na página atual
-        if (page >= response.data.total_pages) {
-          commit("setHasMoreVagas", false);
-        }
       } catch (error) {
         console.log("Erro ao obter vagas", error);
       }
@@ -118,7 +110,6 @@ export const store = createStore({
     vagas: (state) => state.vagas,
     currentPage: (state) => state.currentPage,
     totalPages: (state) => state.totalPages,
-    hasMoreVagas: (state) => state.hasMoreVagas,
   },
 });
 

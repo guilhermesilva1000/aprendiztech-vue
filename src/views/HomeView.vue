@@ -131,10 +131,16 @@ onMounted(() => {
 
 .content .vagas {
   width: 100%;
-  padding: 3rem 1rem;
+  padding: 3rem 8rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .content .vagas {
+    padding: 3rem 1rem;
+  }
 }
 
 .content .vagas h2 {
@@ -168,49 +174,6 @@ onMounted(() => {
   align-items: flex-start;
 }
 
-.content .vagas .vagas-content .vaga .vaga-head button {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.content .vagas .vagas-content .vaga .vaga-head button:hover {
-  background: #f8f9fa;
-}
-.content .vagas .vagas-content .vaga .vaga-options {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.content .vagas .vagas-content .vaga .vaga-options .vaga-options-btns {
-  display: block;
-  position: relative;
-  top: -0.2rem;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
-
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.content .vagas .vagas-content .vaga .vaga-options .vaga-options-btns button {
-  background: none;
-  border: none;
-  padding: 0.25rem 1rem;
-  border-radius: 0.25rem;
-}
-.content
-  .vagas
-  .vagas-content
-  .vaga
-  .vaga-options
-  .vaga-options-btns
-  button:hover {
-  background: #f8f9fa;
-}
 .content .vagas .vagas-content .vaga:hover h3 {
   text-decoration: underline;
 }
@@ -224,6 +187,13 @@ onMounted(() => {
   width: 80%;
   font-size: 0.9rem;
   font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.2rem;
+  max-height: 2.4rem;
 }
 
 .content .vagas .vagas-content .vaga .company {
