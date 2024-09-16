@@ -45,7 +45,9 @@ const handleScroll = () => {
 
 onMounted(() => {
   checkAuth();
-  store.dispatch("getVagas");
+  if (store.getters.vagas.length === 0) {
+    store.dispatch("getVagas");
+  }
   window.addEventListener("scroll", handleScroll);
 });
 </script>
