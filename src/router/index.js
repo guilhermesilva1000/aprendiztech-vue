@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import SignupView from "../views/SignupView.vue";
 import VagaView from "../views/VagaView.vue";
+import SearchResults from "../views/SearchResults.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,11 @@ const router = createRouter({
       name: "vaga",
       component: VagaView,
       props: true,
+    },
+    {
+      path: "/search",
+      name: "search",
+      component: SearchResults,
     },
   ],
 });

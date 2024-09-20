@@ -143,7 +143,7 @@ export default {
   max-width: 100%;
   font-family: "Inter", sans-serif;
   word-break: break-all;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   line-height: 1.5rem;
   overflow: auto;
   white-space: pre-wrap;

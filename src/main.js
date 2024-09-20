@@ -23,6 +23,7 @@ import {
   FaCopy,
   GiWorld,
   FaLinkedinIn,
+  HiSolidSearch,
 } from "oh-vue-icons/icons";
 import axios from "axios";
 
@@ -42,11 +43,12 @@ addIcons(
   PxBuildings,
   FaCopy,
   GiWorld,
-  FaLinkedinIn
+  FaLinkedinIn,
+  HiSolidSearch
 );
 
-// axios.defaults.baseURL = "http://127.0.0.1:8080/api/v1";
-axios.defaults.baseURL = "https://aprendiztech-api.onrender.com/api/v1";
+axios.defaults.baseURL = "http://127.0.0.1:8080/api/v1";
+// axios.defaults.baseURL = "https://aprendiztech-api.onrender.com/api/v1";
 
 const app = createApp(App);
 

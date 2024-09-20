@@ -6,8 +6,9 @@ import { isTokenValid } from "@/auth";
 
 const store = useStore();
 const router = useRouter();
-const loading = ref(false); // Para rastrear o estado de carregamento
-const hasMoreVagas = ref(true); // Verifica se há mais vagas para carregar
+const loading = ref(false);
+const hasMoreVagas = ref(true);
+const search = ref(""); // Valor da busca
 
 const checkAuth = () => {
   const token = localStorage.getItem("accessToken");
@@ -16,21 +17,25 @@ const checkAuth = () => {
   }
 };
 
+// Função de pesquisa
+const searchVagas = () => {
+  if (search.value.trim()) {
+    router.push({ path: `/search`, query: { query: search.value } });
+  }
+};
+
 const loadMoreVagas = async () => {
   if (!loading.value && hasMoreVagas.value) {
     loading.value = true;
 
-    // Verifique se a próxima página está dentro do intervalo
     if (store.state.currentPage < store.state.totalPages) {
       await store.dispatch("getVagas", store.state.currentPage + 1);
       loading.value = false;
 
-      // Verifique se todas as páginas foram carregadas
       if (store.state.currentPage >= store.state.totalPages) {
         hasMoreVagas.value = false;
       }
     } else {
-      // Se não há mais páginas, atualize o estado para não tentar carregar mais
       hasMoreVagas.value = false;
       loading.value = false;
     }
@@ -49,6 +54,16 @@ const handleScroll = () => {
   ) {
     loadMoreVagas();
   }
+};
+
+const transformText = (text) => {
+  const charactersLimit = 80;
+
+  if (text.length > charactersLimit) {
+    return text.substring(0, charactersLimit) + "...";
+  }
+
+  return text;
 };
 
 onMounted(() => {
@@ -70,6 +85,25 @@ onMounted(() => {
         aprendizado.
       </p>
     </div>
+    <div class="search-bar">
+      <form @submit.prevent="searchVagas">
+        <div class="form-group">
+          <div class="input-container">
+            <input
+              type="text"
+              id="search"
+              v-model="search"
+              name="search"
+              placeholder=" "
+            />
+            <label for="search">Palavras-chave, empresa</label>
+          </div>
+        </div>
+        <button type="submit">
+          <v-icon name="hi-solid-search" scale="1" />
+        </button>
+      </form>
+    </div>
     <div class="vagas">
       <h2>Vagas</h2>
       <div class="vagas-content">
@@ -82,7 +116,7 @@ onMounted(() => {
           <h3>{{ vaga.title }}</h3>
           <p class="company">{{ vaga.company }}</p>
           <span>{{ vaga.location }}</span>
-          <p>{{ vaga.description }}</p>
+          <p>{{ transformText(vaga.description) }}</p>
           <span>Há 2 dias</span>
         </RouterLink>
       </div>
@@ -111,7 +145,6 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   padding: 3rem 0;
-  /* background: #6741d9; */
   gap: 1rem;
   color: #000;
 }
@@ -129,9 +162,48 @@ onMounted(() => {
   font-size: 1.1rem;
 }
 
+.content .search-bar {
+  width: 100%;
+  padding: 1rem 8rem;
+}
+
+.content .search-bar form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+.content .search-bar form .form-group {
+  width: 100%;
+  display: flex;
+}
+
+.content .search-bar form .form-group .input-container {
+  width: 100%;
+}
+
+.content .search-bar form .form-group .input-container input {
+  width: 100%;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.content .search-bar form button {
+  padding: 0.975rem 0.9rem;
+  border: 1px solid #000;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  cursor: pointer;
+}
+
 .content .vagas {
   width: 100%;
   padding: 3rem 8rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -140,6 +212,10 @@ onMounted(() => {
 @media screen and (max-width: 768px) {
   .content .vagas {
     padding: 3rem 1rem;
+  }
+
+  .content .search-bar {
+    padding: 1rem;
   }
 }
 

@@ -29,7 +29,7 @@ export const store = createStore({
       state.email = email;
     },
     addVagas(state, { vagas, totalVagas, totalPages, currentPage }) {
-      state.vagas = [...state.vagas, ...vagas]; // Adiciona novas vagas à lista existente
+      state.vagas = [...state.vagas, ...vagas];
       state.totalVagas = totalVagas;
       state.totalPages = totalPages;
       state.currentPage = currentPage;
@@ -99,6 +99,18 @@ export const store = createStore({
         commit("setUsername", "");
       } catch (error) {
         console.error("Erro ao realizar logout", error);
+      }
+    },
+    async searchVagas({ commit }, searchQuery) {
+      try {
+        const response = await axios.get(`/vagas/search`, {
+          params: { query: searchQuery },
+        });
+        console.log(response.data.vagas);
+        return response;
+      } catch (error) {
+        console.error("Erro ao buscar vagas:", error);
+        throw error;
       }
     },
   },
