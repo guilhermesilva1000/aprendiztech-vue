@@ -48,7 +48,7 @@ addIcons(
 );
 
 // axios.defaults.baseURL = "http://127.0.0.1:8080/api/v1";
-axios.defaults.baseURL = "https://aprendiztech-api.onrender.com/api/v1";
+axios.defaults.baseURL = "https://flat-vida-yourstory-test-bb7be44b.koyeb.app/api/v1";
 
 const app = createApp(App);
 
